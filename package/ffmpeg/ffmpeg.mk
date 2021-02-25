@@ -4,9 +4,16 @@
 #
 ################################################################################
 
-FFMPEG_VERSION = 4.3.1
-FFMPEG_SOURCE = ffmpeg-$(FFMPEG_VERSION).tar.xz
-FFMPEG_SITE = http://ffmpeg.org/releases
+#FFMPEG_VERSION = 4.3.1
+#FFMPEG_SOURCE = ffmpeg-$(FFMPEG_VERSION).tar.xz
+#FFMPEG_SITE = http://ffmpeg.org/releases
+
+#FFMPEG_VERSION = dev/4.3.1/drm_prime_1_ahayes
+#FFMPEG_SITE = https://github.com/andy-hayes/rpi-ffmpeg
+FFMPEG_VERSION = dev/4.3.1/drm_prime_1
+FFMPEG_SITE = https://github.com/jc-kynesim/rpi-ffmpeg
+FFMPEG_SITE_METHOD = git
+
 FFMPEG_INSTALL_STAGING = YES
 
 FFMPEG_LICENSE = LGPL-2.1+, libjpeg license
@@ -15,6 +22,8 @@ ifeq ($(BR2_PACKAGE_FFMPEG_GPL),y)
 FFMPEG_LICENSE += and GPL-2.0+
 FFMPEG_LICENSE_FILES += COPYING.GPLv2
 endif
+
+BR_NO_CHECK_HASH_FOR += $(FFMPEG_SOURCE)
 
 FFMPEG_CPE_ID_VENDOR = ffmpeg
 
