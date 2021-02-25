@@ -1,0 +1,31 @@
+diff --git a/libavcodec/v4l2_request.c b/libavcodec/v4l2_request.c
+index 2306c21836..555fc37d99 100644
+--- a/libavcodec/v4l2_request.c
++++ b/libavcodec/v4l2_request.c
+@@ -31,6 +31,26 @@
+ #include "v4l2_request.h"
+ #include "v4l2_phase.h"
+ 
++/////////////////////////////////////////////////////////////////////////////
++/////////////////////////////////////////////////////////////////////////////
++// HACKS FOR RASPBERRY PI BUILD SO THEY DON'T NEED THE EXACT KERNEL HEADERS
++#ifndef V4L2_PIX_FMT_NV12_COL128
++#define V4L2_PIX_FMT_NV12_COL128 v4l2_fourcc('N', 'C', '1', '2') /* 12  Y/CbCr 4:2:0 128 pixel wide column */
++#endif
++
++#ifndef V4L2_PIX_FMT_NV12_10_COL128
++#define V4L2_PIX_FMT_NV12_10_COL128 v4l2_fourcc('N', 'C', '3', '0')
++#endif
++
++#ifndef V4L2_BUF_FLAG_M2M_HOLD_CAPTURE_BUF
++#define V4L2_BUF_FLAG_M2M_HOLD_CAPTURE_BUF       0x00000200
++#endif
++
++#ifndef V4L2_BUF_CAP_SUPPORTS_M2M_HOLD_CAPTURE_BUF
++#define V4L2_BUF_CAP_SUPPORTS_M2M_HOLD_CAPTURE_BUF       (1 << 5)
++#endif
++/////////////////////////////////////////////////////////////////////////////
++
+ #ifndef DRM_FORMAT_NV15
+ #define DRM_FORMAT_NV15 fourcc_code('N', 'V', '1', '5')
+ #endif
